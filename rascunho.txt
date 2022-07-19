@@ -1,0 +1,24 @@
+Tecnologias
+
+- Servidor Tomcat
+- Java EE - Servlet e JSP
+- IDE Eclipse
+- MySQL ( CRUD - Create Read Update Delete )
+- MVC ( Model View Controller )
+- JavaBeans
+- JDBC ( Java Database Connectivity )
+- iText
+
+
+url:
+127.0.0.1:3306/dbagenda
+
+user:
+root
+
+password:
+root
+
+jdbc:mysql://127.0.0.1:3306/?user=root
+
+root@127.0.0.1:3306
