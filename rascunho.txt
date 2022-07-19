@@ -5,7 +5,6 @@ Tecnologias
 - IDE Eclipse
 - MySQL ( CRUD - Create Read Update Delete )
 - MVC ( Model View Controller )
-- JavaBeans
 - JDBC ( Java Database Connectivity )
 - iText
 
