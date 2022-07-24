@@ -45,9 +45,9 @@
 				<td><%=lista.get(i).getEmail()%></td>
 				<td>
 					<a href="select?idcon=<%=lista.get(i).getIdcon()%>"
-					class="Botao1">Editar</a>
+					class="btn btn-primary">Editar</a>
 					<a href="javascript: confirmar(<%=lista.get(i).getIdcon()%>)"
-					class="Botao2">Excluir</a>
+					class="btn btn-primary">Excluir</a>
 				</td>
 			</tr>
 			<%
