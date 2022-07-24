@@ -1,20 +1,21 @@
 package controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import model.Contato;
 import model.DAO;
-
-import java.io.IOException;
 
 /**
  * Servlet implementation class Controller
  */
-@WebServlet(urlPatterns = { "/controller", "/main", "/insert" })
+@WebServlet(urlPatterns = { "/controller", "/main", "/insert", "/select" })
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	DAO dao = new DAO();
@@ -40,11 +41,11 @@ public class Controller extends HttpServlet {
 
 		if (action.equals("/main")) {
 			contatos(request, response);
-		}
-		else if (action.equals("/insert")) {
+		} else if (action.equals("/insert")) {
 			novoContato(request, response);
-		}
-		else {
+		} else if (action.equals("/select")) {
+			listarContato(request, response);
+		} else {
 			response.sendRedirect("index.html");
 		}
 	}
@@ -52,7 +53,13 @@ public class Controller extends HttpServlet {
 	// listar contatos
 	protected void contatos(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect("agenda.jsp");
+
+		ArrayList<Contato> lista = dao.listarContatos();
+
+		request.setAttribute("contatos", lista);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("agenda.jsp");
+		dispatcher.forward(request, response);
+
 	}
 
 	// novo contato
@@ -61,6 +68,21 @@ public class Controller extends HttpServlet {
 		contato.setNome(request.getParameter("nome"));
 		contato.setFone(request.getParameter("fone"));
 		contato.setEmail(request.getParameter("email"));
+
+		dao.inserirContato(contato);
+
+		response.sendRedirect("main");
 	}
+	
+	// editar contatos
+		protected void listarContato(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			String idcon = request.getParameter("idcon");
+			contato.setIdcon(idcon);
+			
+			dao.selecionarContato(contato);
+			
+			System.out.println(contato.getIdcon());
+		}
 
 }

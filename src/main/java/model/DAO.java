@@ -1,15 +1,87 @@
 package model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import conexaoJDBC.SingleConnetcion;
 
 public class DAO {
-	
+
 	private Connection connection;
-	
+
 	public DAO() {
 		connection = SingleConnetcion.getConnection();
 	}
+
+	public void inserirContato(Contato contato) {
+
+		try {
+
+			String create = "insert into contato (nome, fone, email) values(?,?,?)";
+
+			PreparedStatement preparedStatement = connection.prepareStatement(create);
+			preparedStatement.setString(1, contato.getNome());
+			preparedStatement.setString(2, contato.getFone());
+			preparedStatement.setString(3, contato.getEmail());
+
+			preparedStatement.executeUpdate();
+
+//			connection.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
+	public ArrayList<Contato> listarContatos() {
+
+		ArrayList<Contato> contatos = new ArrayList<>();
+		
+		try {
+			
+			String read = "select * from contato order by nome";
+			
+			PreparedStatement preparedStatement = connection.prepareStatement(read);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			while( resultSet.next() ) {
+				String idcon = resultSet.getString(1);
+				String nome = resultSet.getString(2);
+				String fone = resultSet.getString(3);
+				String email = resultSet.getString(4);
+				
+				contatos.add( new Contato( idcon, nome, fone, email ) );
+			}
+			
+			return contatos;
+			
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+	
+	
+	
+	  public void selecionarContato( Contato contato ) {
+	  
+	  try {
+	  
+			String read = "select * from contato where idcon = ?";
+
+			PreparedStatement preparedStatement = connection.prepareStatement(read);
+			preparedStatement.setString( 1, contato.getIdcon() );
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			while( resultSet.next() ) {
+				contato.setIdcon(resultSet.getString(1));
+				contato.setNome(resultSet.getString(2));
+				contato.setFone(resultSet.getString(3));
+				contato.setEmail(resultSet.getString(4));
+			}
+	  } catch (Exception e) { System.out.println(e); } }
+	 
 
 }
