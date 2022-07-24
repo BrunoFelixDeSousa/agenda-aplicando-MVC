@@ -67,21 +67,43 @@ public class DAO {
 	
 	  public void selecionarContato( Contato contato ) {
 	  
-	  try {
-	  
-			String read = "select * from contato where idcon = ?";
+			try {
 
-			PreparedStatement preparedStatement = connection.prepareStatement(read);
-			preparedStatement.setString( 1, contato.getIdcon() );
-			ResultSet resultSet = preparedStatement.executeQuery();
-			
-			while( resultSet.next() ) {
-				contato.setIdcon(resultSet.getString(1));
-				contato.setNome(resultSet.getString(2));
-				contato.setFone(resultSet.getString(3));
-				contato.setEmail(resultSet.getString(4));
+				String read = "select * from contato where idcon = ?";
+
+				PreparedStatement preparedStatement = connection.prepareStatement(read);
+				preparedStatement.setString(1, contato.getIdcon());
+				ResultSet resultSet = preparedStatement.executeQuery();
+
+				while (resultSet.next()) {
+					contato.setIdcon(resultSet.getString(1));
+					contato.setNome(resultSet.getString(2));
+					contato.setFone(resultSet.getString(3));
+					contato.setEmail(resultSet.getString(4));
+				}
+				
+			} catch (Exception e) {
+				System.out.println(e);
 			}
-	  } catch (Exception e) { System.out.println(e); } }
+	  }
+	  
+	  public void alterarContato( Contato contato ) {
+		  
+		  try {
+
+				String update = "update contato set nome=?, fone=?, email=? where idcon=?";
+
+				PreparedStatement preparedStatement = connection.prepareStatement(update);
+				preparedStatement.setString(1, contato.getNome());
+				preparedStatement.setString(2, contato.getFone());
+				preparedStatement.setString(3, contato.getEmail());
+				preparedStatement.setString(4, contato.getIdcon());
+				preparedStatement.executeUpdate();
+				
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+	  }
 	 
 
 }
