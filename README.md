@@ -10,3 +10,5 @@ Tecnologias
 - MVC ( Model View Controller )
 - JDBC ( Java Database Connectivity )
 - iText
+- Bootstrap
+- javascript
