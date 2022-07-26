@@ -7,14 +7,26 @@ import java.util.ArrayList;
 
 import conexaoJDBC.SingleConnetcion;
 
+/**
+ * The Class DAO.
+ */
 public class DAO {
 
+	/** The connection. */
 	private Connection connection;
 
+	/**
+	 * Instantiates a new dao.
+	 */
 	public DAO() {
 		connection = SingleConnetcion.getConnection();
 	}
 
+	/**
+	 * Inserir contato.
+	 *
+	 * @param contato the contato
+	 */
 	public void inserirContato(Contato contato) {
 
 		try {
@@ -35,6 +47,11 @@ public class DAO {
 		}
 	}
 
+	/**
+	 * Listar contatos.
+	 *
+	 * @return the array list
+	 */
 	public ArrayList<Contato> listarContatos() {
 
 		ArrayList<Contato> contatos = new ArrayList<>();
@@ -63,6 +80,11 @@ public class DAO {
 		}
 	}
 
+	/**
+	 * Selecionar contato.
+	 *
+	 * @param contato the contato
+	 */
 	public void selecionarContato(Contato contato) {
 
 		try {
@@ -85,10 +107,15 @@ public class DAO {
 		}
 	}
 
+	/**
+	 * Alterar contato.
+	 *
+	 * @param contato the contato
+	 */
 	public void alterarContato(Contato contato) {
 
 		try {
-			
+
 			String update = "update contato set nome=?, fone=?, email=? where idcon=?";
 
 			PreparedStatement preparedStatement = connection.prepareStatement(update);
@@ -103,19 +130,23 @@ public class DAO {
 		}
 	}
 
+	/**
+	 * Deletar contato.
+	 *
+	 * @param contato the contato
+	 */
 	public void deletarContato(Contato contato) {
 
 		try {
-			
+
 			String delete = "delete from contato where idcon=?";
-			
+
 			PreparedStatement preparedStatement = connection.prepareStatement(delete);
 			preparedStatement.setString(1, contato.getIdcon());
 			preparedStatement.executeUpdate();
-			
+
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
-
 }
