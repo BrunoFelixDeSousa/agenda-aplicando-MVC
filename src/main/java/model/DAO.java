@@ -88,10 +88,8 @@ public class DAO {
 	  }
 	  
 	  public void alterarContato( Contato contato ) {
-		  
+			String update = "update contato set nome=?, fone=?, email=? where idcon=?";
 		  try {
-
-				String update = "update contato set nome=?, fone=?, email=? where idcon=?";
 
 				PreparedStatement preparedStatement = connection.prepareStatement(update);
 				preparedStatement.setString(1, contato.getNome());

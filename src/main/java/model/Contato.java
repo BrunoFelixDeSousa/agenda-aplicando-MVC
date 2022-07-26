@@ -56,4 +56,10 @@ public class Contato {
 		this.email = email;
 	}
 
+	@Override
+	public String toString() {
+		return "Contato [idcon=" + idcon + ", nome=" + nome + ", fone=" + fone + ", email=" + email + "]";
+	}
+
+	
 }

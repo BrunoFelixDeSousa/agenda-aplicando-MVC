@@ -16,7 +16,7 @@
 		<form name="formularioContato" action="update">
 			<table class="col-sm-7">
 				<tr>
-					<td><input type="text" name="idcon" class="form-control m-1" aria-label="Disabled input example" disabled value="<% out.print(request.getAttribute("idcon")); %>">
+					<td><input type="text" name="idcon" class="form-control m-1" aria-label="Disabled input example" readonly value="<% out.print(request.getAttribute("idcon")); %>">
 					</td>
 				</tr>
 				<tr>
