@@ -44,8 +44,8 @@ ArrayList<Contato> lista = (ArrayList<Contato>) request.getAttribute("contatos")
 					<td><%=lista.get(i).getFone()%></td>
 					<td><%=lista.get(i).getEmail()%></td>
 					<td><a href="select?idcon=<%=lista.get(i).getIdcon()%>"
-						class="btn btn-warning">Editar</a> <a
-						href="javascript: confirmar(<%=lista.get(i).getIdcon()%>)"
+						class="btn btn-warning">Editar</a>
+						<a href="javascript: confirmar(<%=lista.get(i).getIdcon()%>)"
 						class="btn btn-danger">Excluir</a></td>
 				</tr>
 				<%
@@ -54,5 +54,7 @@ ArrayList<Contato> lista = (ArrayList<Contato>) request.getAttribute("contatos")
 			</tbody>
 		</table>
 	</div>
+	
+	<script src="scripts/confirmar.js"></script>
 </body>
 </html>
