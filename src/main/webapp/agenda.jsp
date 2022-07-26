@@ -22,7 +22,7 @@ ArrayList<Contato> lista = (ArrayList<Contato>) request.getAttribute("contatos")
 	<div class="container">
 		<h1>Agenda de Contatos</h1>
 		<a class="btn btn-primary" href="novo.html">Novo Contato</a>
-
+		<a class="btn btn-warning" href="report">Relatório</a>
 
 		<table class="table">
 			<thead>
